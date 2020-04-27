@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1
+    a(href="/") ANYNOTE
+  nav
+    span(style="font-size:20px; color:red;") #{topic}
+  div
+    form(action="/sign/register_process" method="post")
+      p
+        input(type="text" name="email" placeholder="email")
+      p
+        input(type="text" name="nickname" placeholder="nickname")
+      p
+        input(type="password" name="password" placeholder="pw")
+      p
+        input(type="password" name="password2" placeholder="confirm")
+      p
+        input(type="submit" value="가입").simple

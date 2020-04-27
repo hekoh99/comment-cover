@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  script(type='text/javascript').
+    if(!#{is_login}){fetch('html/login.html').then(function(response){response.text().then(function(text){document.getElementById('login').innerHTML = text;})})}
+    else{
+    fetch('html/logout.html').then(function(response){response.text().then(function(text){document.querySelector('span').innerHTML = text;})})
+    }
+  script(type='text/javascript').
+    fetch('html/goodComments.html').then(function(response){response.text().then(function(text){document.getElementById('comments').innerHTML = text;})})
+  script(src="javascripts/comments.js")
+  script(src="javascripts/likes.js")
+  script(src="javascripts/Dlikes.js")
+
+  div#login #{nick}
+    span
+  h1
+    a(href="/") #{title}
+  nav comment recommendation function and covering bad comments
+  p#main Main Page
+
+  form(action="/modify/comment_process" method="post" onsubmit="if(#{is_login} === false){alert('login required');return false;} else{return true;}")
+    p Comments
+      input(name="content" type="text")
+      input(id="cSubmit" type="submit" value="등록")
+  div#controler
+    input(type="button" value="전체 댓글" onclick="coControler(this.value)")#showComment
+  div#comments
